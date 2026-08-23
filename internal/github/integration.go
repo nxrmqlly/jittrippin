@@ -230,7 +230,10 @@ func (i *Integration) reportRelease(ctx context.Context, c *Client, owner, name,
 	for _, ra := range rel.Artifacts {
 		assetName := ra.As
 		if assetName == "" {
-			assetName = ra.Name + ".tar"
+			assetName = ra.Name
+		}
+		if !strings.HasSuffix(assetName, ".tar") {
+			assetName += ".tar"
 		}
 
 		slog.Debug("github: reportRelease: loading artifact", "job", ra.Job, "artifact", ra.Name, "asset_name", assetName)
