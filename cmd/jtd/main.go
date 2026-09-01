@@ -123,7 +123,13 @@ func main() {
 		Handler: router,
 	}
 
-	if err := srv.ListenAndServe(); err != nil {
+	go func() {
+		<-ctx.Done()
+		log.Println("shutting down...")
+		srv.Close()
+	}()
+
+	if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		log.Fatal(err)
 	}
 }

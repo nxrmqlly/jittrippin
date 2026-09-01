@@ -47,6 +47,11 @@ func ExecuteJob(ctx context.Context, cfg ExecuteJobConfig) error {
 		return err
 	}
 
+	go func() {
+		<-ctx.Done()
+		exec.Remove(context.Background())
+	}()
+
 	defer func() {
 		if err := exec.Remove(ctx); err != nil {
 			log.Printf("cleanup failed: %v", err)

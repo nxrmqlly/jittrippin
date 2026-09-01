@@ -23,6 +23,8 @@ JitTrippin exists because YAML (for CI/CD) deserves to be thrown into a vat of l
 Of course, choices only exist if they are implemented.
 JitTrippin is in very early development. We have Docker + Disk Storage (for artifacts) for now.
 
+![jt run example output](./assets/output.png)
+
 ## References
 
 1. CLI Reference: [spec/cli.md](./spec/cli.md)
