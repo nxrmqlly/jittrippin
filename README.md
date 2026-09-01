@@ -37,7 +37,7 @@ variables, loops, and functions instead of dreaded YAML syntax.
 Example: `hello-world.lua`
 
 ```lua
-pipeline "hello-world"
+pipeline "hello-world" {}
 
 checkout {
     url = "https://github.com/nxrmqlly/jittrippin",
@@ -51,9 +51,9 @@ github {
 }
 
 job "echo-stuff" {
-    image = "alpine:latest"
+    image = "alpine:latest",
 
-    run "echo hello world!"
+    run "echo hello world!",
     run "named step" {
         cmd = "echo some stuff here..."
     }
