@@ -19,7 +19,7 @@ type DockerRunner struct {
 }
 
 func NewDockerRunner() (*DockerRunner, error) {
-	apiClient, err := client.New(client.FromEnv, client.WithAPIVersionNegotiation())
+	apiClient, err := client.New(client.FromEnv)
 	if err != nil {
 		return nil, fmt.Errorf("unable to create docker client: %w", err)
 	}

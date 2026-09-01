@@ -7,13 +7,8 @@ The best way, so far is to run it as a **systemd** service
 
 ```sh
 mkdir -p /opt/jittrippin
-cd /opt/jittrippin
-```
-
-_**OR Clone the repo**_
-
-```sh
 git clone https://github.com/nxrmqlly/jittrippin.git /opt/jittrippin
+
 cd /opt/jittrippin
 ```
 
@@ -72,19 +67,23 @@ Give it a name, for example "My JitTrippin" and configure it as the following:
 
 ### Repository permissions
 
-1. **Actions**: Read-only
-2. **Artifact metadata**: Read and write
-3. **Commit statuses**: Read and write
-4. **Contents**: Read and write
-5. **Deployments**: Read and write
-6. **Issues**: Read and write
-7. **Pull requests**: Read and write
-8. **Webhooks**: Read and write
-9. **Workflows**: Read and write
+| Permission        | Access         |
+| ----------------- | -------------- |
+| Actions           | Read-only      |
+| Artifact metadata | Read and write |
+| Commit statuses   | Read and write |
+| Contents          | Read and write |
+| Deployments       | Read and write |
+| Issues            | Read and write |
+| Pull requests     | Read and write |
+| Webhooks          | Read and write |
+| Workflows         | Read and write |
 
 ### Account permissions:
 
-1. **Email addresses**: Read-only
+| Permission      | Access    |
+| --------------- | --------- |
+| Email addresses | Read-only |
 
 ### Events:
 
@@ -104,10 +103,7 @@ Subscribe to these events:
 12. Repository
 13. Status
 
-### Where can this GitHub App be installed?
-
 Choose "Only on this account" if you are running JitTrippin privately for yourself.
-
 Choose "Any account" if you intend to let others install your JitTrippin bot/app.
 
 Finally, click **Create GitHub App.**
