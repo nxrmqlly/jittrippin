@@ -98,14 +98,12 @@ go build -o ./jtd ./cmd/jtd # compile the daemon
 
 ## Quick Start
 
-1. (optional, if only running locally) Connect to a JitTrippin daemon
+1. Connect to a JitTrippin daemon (**optional**, if running locally only)
 
 ```sh
-jt auth login       # [optional] log into a remote daemon
-
-jt integrations add # [optional] connect your GitHub account and install JitTrippin
-
-jt repos add        # [optional] choose the repositories JT should track
+jt auth login       # log into a remote daemon
+jt integrations add # connect your GitHub account and install JitTrippin
+jt repos add        #  choose the repositories JT should track
 ```
 
 2. Set up a project

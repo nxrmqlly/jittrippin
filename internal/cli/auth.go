@@ -102,7 +102,8 @@ func oauthDance(ctx context.Context, client *daemonClient, provider string, noOp
 		return "", err
 	}
 	fmt.Printf("Open this URL in your browser:\n\n	%s\n\n", url)
-	if !noOpen {
+	// TODO: fix browser not opening properly on platforms
+	if !noOpen && false {
 		_ = openBrowser(url)
 	}
 	codeCh := make(chan string, 1)
