@@ -64,7 +64,12 @@ job "echo-stuff" {
 
 ## Installing
 
-### From source
+### Prerequisites
+
+- [Docker](https://www.docker.com/)
+- [Go](https://go.dev/dl) (if using `go install` or building from source)
+
+### Using `go install`
 
 **The `jt` CLI:**
 
@@ -78,28 +83,29 @@ go install github.com/nxrmqlly/jittrippin/cmd/jt@latest
 go install github.com/nxrmqlly/jittrippin/cmd/jtd@latest
 ```
 
+### Building from source
+
+Clone this repo, cd into it, then:
+
+```sh
+go build -o ./jt ./cmd/jt
+go build -o ./jtd ./cmd/jtd
+```
+
 ### Releases
 
 (Some) Prebuilt binaries are available on the [Releases Page](https://github.com/nxrmqlly/jittrippin/releases/)
 
 ## Quick Start
 
-1. Connect to a JitTrippin daemon
+1. (optional, if only running locally) Connect to a JitTrippin daemon
 
 ```sh
-jt auth login
-```
+jt auth login # [optional] log into a remote daemon
 
-Then connect your GitHub account and install JitTrippin:
+jt integrations add # [optional] connect your GitHub account and install JitTrippin
 
-```sh
-jt integrations add
-```
-
-And choose the repositories JT should track:
-
-```sh
-jt repos add
+jt repos add # [optional] choose the repositories JT should track
 ```
 
 2. Set up a project
@@ -110,22 +116,20 @@ Inside your project directory:
 jt init
 ```
 
-This creates a `.jt/` directory and a `.jtrc` in the root dir
+This creates a pipelines directory and a `.jtrc` in the root dir
 
 Create `.jt/hello.lua`:
 
 ```lua
-pipeline "hello"
+pipeline "hello-world" {}
 
-checkout {
-    url = "https://github.com/you/my-project",
-    branch = "main",
-}
+job "echo-stuff" {
+    image = "alpine:latest",
 
-job "hello" {
-    image = "alpine:latest"
-
-    run "echo hello world!"
+    run "echo hello world!",
+    run "named step" {
+        cmd = "echo some stuff here..."
+    }
 }
 ```
 
