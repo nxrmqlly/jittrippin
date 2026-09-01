@@ -88,8 +88,8 @@ go install github.com/nxrmqlly/jittrippin/cmd/jtd@latest
 Clone this repo, cd into it, then:
 
 ```sh
-go build -o ./jt ./cmd/jt
-go build -o ./jtd ./cmd/jtd
+go build -o ./jt ./cmd/jt   # compile the CLI
+go build -o ./jtd ./cmd/jtd # compile the daemon
 ```
 
 ### Releases
@@ -101,11 +101,11 @@ go build -o ./jtd ./cmd/jtd
 1. (optional, if only running locally) Connect to a JitTrippin daemon
 
 ```sh
-jt auth login # [optional] log into a remote daemon
+jt auth login       # [optional] log into a remote daemon
 
 jt integrations add # [optional] connect your GitHub account and install JitTrippin
 
-jt repos add # [optional] choose the repositories JT should track
+jt repos add        # [optional] choose the repositories JT should track
 ```
 
 2. Set up a project
