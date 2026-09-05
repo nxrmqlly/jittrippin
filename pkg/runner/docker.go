@@ -82,7 +82,8 @@ func (r *DockerRunner) Create(ctx context.Context, cfg ExecutionCreateConfig) (E
 				NanoCPUs:  2_000_000_000,
 				PidsLimit: new(int64(150)),
 			},
-			CapDrop:     []string{"ALL"},
+			// CapDrop:     []string{"ALL"},
+			CapDrop:     nil, // HACK
 			SecurityOpt: []string{"no-new-privileges:true"},
 		},
 	})
@@ -170,7 +171,20 @@ func (e *DockerExecution) CopyIn(ctx context.Context, reader io.Reader, pathTo s
 		DestinationPath: pathTo,
 		Content:         reader,
 	})
-	return err
+	if err != nil {
+		return err
+	}
+
+	// HACK: make copied workspace writable
+	if _, err := e.Exec(ctx, ExecConfig{
+		Cmd:    "chmod -R a+rwX " + pathTo,
+		Stdout: io.Discard,
+		Stderr: io.Discard,
+	}); err != nil {
+		return fmt.Errorf("cannot chmod workspace: %w", err)
+	}
+
+	return nil
 }
 func (e *DockerExecution) CopyOut(ctx context.Context, pathFrom string) (io.ReadCloser, error) {
 	if !filepath.IsAbs(pathFrom) {
